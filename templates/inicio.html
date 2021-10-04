@@ -1,33 +1,41 @@
+{% extends 'header.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oda al Jorge</title>
-</head>
 
-<body style='background-color:black;'>
-    <div>
-        <center><h1 style='color:coral'>Oda al Jorgito</h1></center>
-    </div>
-    <div>
-        <center><img src="{% static 'media/image1.png' %}" width='450px' alt='Jorge entero rico'></center>;  
-    </div>
-    <div>
-        <center><img src="{% static 'media/image2.png' %}" width='450px' alt='Jorge rico'></center>;  
-    </div>
-    <div>
-        <center><img src="{% static 'media/image3.png' %}" width='450px' alt='Jorge te amo'></center>;  
-    </div>
-    <div>
-        <center><img src="{% static 'media/image4.png' %}" width='450px' alt='My image'></center>;  
-    </div>
-    <div>
-        <center><img src="{% static 'media/image5.png' %}" width='450px' alt='My image'></center>;  
-    </div>
-    
-</body>
+<!--agregar contenido del block (body)-->
 
-</html>
+{% block content %}
+    <div>
+        <center><img class="mt-2" src="{% static 'media/imagen_inicio.PNG' %}" width='65%' height='auto' alt='inicio'></center>  
+    </div>
+    <div class="col-lg-6 offset-lg-3 mt-5">
+        <div class="accordion" id="inicio">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id= "headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        El juego de combate de cartas y heroes mas adictivo
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#inicio">
+                    <div class="accordion-body">
+                        <p>Combate de cartas por turnos en donde utilizas cartas tematicas para combatir con enemigos CPU.</p>
+                    </div>
+                </div>    
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id= "headingTwo">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        VARIEDAD DE HEROES
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#inicio">
+                    <div class="accordion-body">
+                        <p>Desde caricaturas, personas reales, memes hasta anime podras adquirir como heroe que te representara en cada combate por medio del sistema gacha!</p>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+  
+  
+{% endblock %}

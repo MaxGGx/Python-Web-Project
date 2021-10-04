@@ -1,0 +1,23 @@
+{%extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-4 offset-lg-4">
+        <fieldset>
+            <legend>Login</legend>
+            <center><img src="{% static a1 %}" width='50%' height='auto' alt='inicio'></center> 
+            <div class="form-group ">
+            <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group" >
+            <label for="exampleInputPassword1" class="form-label mt-2">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <small id="registerLink" class="form-text"><a href="#">No tienes cuenta?, registrate aqui!</a></small>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary mt-4">Acceder</button>
+    </div>
+</div>
+{% endblock %}
