@@ -1,10 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .funciones_aux import verificarUsuario, register
+from django.contrib import auth
 import random
 
 def inicio(request):
+    if request.user:
+        context = {'username' : request.user}
+        return render(request, "inicio.html", context)
     return render(request, "inicio.html")
 
 def segunda_vista(request):
-    
-    dic1 = random.choice(['media/ZT.png','media/MikuLogo.png'])
-    return render(request, "segunda_vista.html", context = {'a1':dic1})
+    context = verificarUsuario(request)
+    if context == 1:
+        return redirect("/", context)
+    else:
+        dic1 = random.choice(['media/ZT.png','media/MikuLogo.png'])
+        context['a1'] = dic1
+        return render(request, "segunda_vista.html", context)
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
+def registro(request):
+    context = register(request)
+    if context == 1:
+        return redirect("/", context)
+    else:
+        dic1 = random.choice(['media/ZT.png','media/MikuLogo.png'])
+        context['a1'] = dic1
+        return render(request, "register.html", context)
+

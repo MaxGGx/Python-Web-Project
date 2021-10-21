@@ -5,14 +5,14 @@
 {% if error != None %}
     <div class="alert alert-dismissible alert-danger">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Chale mano</strong> No se puede iniciar sesion, verifica usuario y contraseña!.
+        <strong>Chale mano</strong> El usuario existe / las contraseñas no son iguales!.
     </div>
 {% endif %}
 <div class="row">
     <div class="col-lg-4 offset-lg-4">
         <form method= "POST" >{% csrf_token %}
             <fieldset>
-                <legend>Login</legend>
+                <legend>Registro</legend>
                 <center><img src="{% static a1 %}" width='50%' height='auto' alt='inicio'></center> 
                 <div class="form-group ">
                 <label for="exampleInputEmail1" class="form-label mt-4">Usuario</label>
@@ -21,10 +21,14 @@
                 <div class="form-group" >
                 <label for="exampleInputPassword1" class="form-label mt-2">Contraseña</label>
                 <input type="password" class="form-control" name='pass' id="exampleInputPassword1" placeholder="Contraseña">
-                <small id="registerLink" class="form-text"><a href="/register/">No tienes cuenta?, registrate aqui!</a></small>
+                </div>
+                <div class="form-group" >
+                <label for="exampleInputPassword1" class="form-label mt-2">Confirma Contraseña</label>
+                <input type="password" class="form-control" name='pass1' id="exampleInputPassword1" placeholder="Contraseña">
+                <small id="registerLink" class="form-text"><a href="/login/">Ya tienes cuenta?, ingresa aqui!</a></small>
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-primary mt-4">Acceder</button>
+            <button type="submit" class="btn btn-primary mt-4">Registrarse</button>
         </form>
         
     </div>
