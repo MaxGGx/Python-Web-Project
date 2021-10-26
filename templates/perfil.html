@@ -1,0 +1,15 @@
+{%extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+    <center><h2>{{username}}</h2>
+    <center><img class="mt-2" src="{% static 'media/MikuLogo.png' %}" width='300px' height='auto' alt='inicio'></center>
+    <center><a class="btn btn-primary mt-3 col-lg-1" href="#">Cambiar imagen</a></center>
+    <div class="mt-4 card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">Informacion</div>
+        <div class="card-body">
+          <h4 class="card-title">Cartas coleccionadas:</h4>
+          <p class="card-text">Insertar numero de cartas</p>
+        </div>
+    </div>
+{% endblock %}
