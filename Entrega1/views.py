@@ -32,7 +32,7 @@ def registro(request):
         context['a1'] = dic1
         return render(request, "register.html", context)
 
-@login_required(login_url="login/")
+@login_required(login_url="/login/")
 def perfil(request):
     context = {'username' : request.user}
     return render(request, "perfil.html", context)
