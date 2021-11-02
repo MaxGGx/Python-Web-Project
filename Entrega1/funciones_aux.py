@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
+from .forms import SignUpForm
+from Entrega1.models import player
 
 
 # verificarUsuario
@@ -21,14 +23,24 @@ def verificarUsuario(request):
 
 def register(request):
     if request.method == 'POST':
-        if ('usuario' in request.POST.keys()) and ('pass' in request.POST.keys()) and ('pass1' in request.POST.keys()):
-            if request.POST['pass'] == request.POST['pass']:
-                if not User.objects.filter(username = request.POST['usuario']).exists():
-                    user = User.objects.create_user(request.POST['usuario'], '', request.POST['pass'])
+        form = SignUpForm(request.POST)
+        if ('username' in request.POST.keys()) and ('password1' in request.POST.keys()) and ('password2' in request.POST.keys()) and ('email' in request.POST.keys()):
+            if request.POST['password1'] == request.POST['password2']:
+                if not User.objects.filter(username = request.POST['username']).exists():
+                    user = User.objects.create_user(request.POST['username'], '', request.POST['password1'])
                     user.save()
-                    user = auth.authenticate(username=request.POST['usuario'], password=request.POST['pass'])
+                    user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
                     auth.login(request,user)
+                    raw_password = request.POST['password1']
+                    usuario = request.POST['username']
+                    email = request.POST['email']
+                    jugador = player()
+                    jugador.Nickname = usuario
+                    jugador.Password = raw_password
+                    jugador.email = email
+                    jugador.save()
                     return 1
+        
         context = {'error' : 'error'}
         return context
     context = {'null': 0}

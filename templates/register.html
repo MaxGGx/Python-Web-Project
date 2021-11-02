@@ -12,23 +12,29 @@
     <div class="col-lg-4 offset-lg-4">
         <form method= "POST" >{% csrf_token %}
             <fieldset>
+                <center>
                 <legend>Registro</legend>
-                <center><img src="{% static a1 %}" width='50%' height='auto' alt='inicio'></center> 
+                <img src="{% static a1 %}" width='50%' height='auto' alt='inicio'>
                 <div class="form-group ">
-                <label for="exampleInputEmail1" class="form-label mt-4">Usuario</label>
-                <input type="text" class="form-control" name='usuario' id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario">
+                    <label for="exampleInputEmail1" class="form-label mt-4">Usuario</label><br>
+                    {{ form.username }}
+                </div>
+                <div class="form-group ">
+                    <label for="exampleInputEmail1" class="form-label mt-2">Correo</label><br>
+                    {{ form.email }}
                 </div>
                 <div class="form-group" >
-                <label for="exampleInputPassword1" class="form-label mt-2">Contraseña</label>
-                <input type="password" class="form-control" name='pass' id="exampleInputPassword1" placeholder="Contraseña">
+                    <label for="exampleInputPassword1" class="form-label mt-2">Contraseña</label><br>
+                    {{ form.password1 }}
                 </div>
-                <div class="form-group" >
-                <label for="exampleInputPassword1" class="form-label mt-2">Confirma Contraseña</label>
-                <input type="password" class="form-control" name='pass1' id="exampleInputPassword1" placeholder="Contraseña">
+                <div class="form-group ">
+                    <label for="exampleInputPassword1" class="form-label mt-2">Confirmar contraseña</label><br>
+                    {{ form.password2 }}
+                </div>
                 <small id="registerLink" class="form-text"><a href="/login/">Ya tienes cuenta?, ingresa aqui!</a></small>
-                </div>
             </fieldset>
-            <button type="submit" class="btn btn-primary mt-4">Registrarse</button>
+            <center><button type="submit" class="btn btn-primary mt-4">Registrarse</button></center>
+            </center>
         </form>
         
     </div>

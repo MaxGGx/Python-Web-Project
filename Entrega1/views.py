@@ -3,6 +3,7 @@ from .funciones_aux import verificarUsuario, register
 from django.contrib import auth
 import random
 from django.contrib.auth.decorators import login_required
+from .forms import SignUpForm
 
 def inicio(request):
     if request.user:
@@ -30,7 +31,9 @@ def registro(request):
     else:
         dic1 = random.choice(['media/ZT.png','media/MikuLogo.png'])
         context['a1'] = dic1
-        return render(request, "register.html", context)
+        form = SignUpForm()
+        context['form'] = form
+        return render(request, "register.html", context, )
 
 @login_required(login_url="/login/")
 def perfil(request):
