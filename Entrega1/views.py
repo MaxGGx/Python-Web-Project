@@ -16,7 +16,7 @@ def segunda_vista(request):
     if context == 1:
         return redirect("/", context)
     else:
-        dic1 = random.choice(['media/ZT.png','media/MikuLogo.png'])
+        dic1 = random.choice(['media/ZT.png','media/MikuLogo.png', 'media/MakiOzePerfil.png', 'media/EntomaOverlord.png', 'media/AinzOverlord.png', 'media/gif1.gif', 'media/BMO.gif'])
         context['a1'] = dic1
         return render(request, "segunda_vista.html", context)
 
@@ -29,7 +29,7 @@ def registro(request):
     if context == 1:
         return redirect("/", context)
     else:
-        dic1 = random.choice(['media/ZT.png','media/MikuLogo.png'])
+        dic1 = random.choice(['media/ZT.png','media/MikuLogo.png', 'media/MakiOzePerfil.png', 'media/EntomaOverlord.png', 'media/AinzOverlord.png', 'media/gif1.gif', 'media/BMO.gif'])
         context['a1'] = dic1
         form = SignUpForm()
         context['form'] = form
