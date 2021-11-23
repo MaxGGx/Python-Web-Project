@@ -31,10 +31,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Archivo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Acerca del sitio</a>
+                    <a class="nav-link" href="/archivo">Archivo</a>
                 </li>
                 {% if not user.is_authenticated %}
                     <li class="nav-item">
@@ -44,6 +41,9 @@
                         <a class="nav-link" href="/register">Registrate</a>
                     </li>
                 {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/juego">Vamo a Juga</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/perfil">Perfil</a>
                     </li>

@@ -9,8 +9,8 @@ class player(models.Model):
     Password = models.CharField(max_length=50, verbose_name="Password", blank=False, null=False)
     email = models.EmailField(verbose_name="Email", blank=False, null=False)
 
-    def __str__(self):
-        return self.Nickname
+    #def __str__(self):
+    #    return self.Nickname
 
 class hero(models.Model):
     Nombre = models.CharField(max_length=100, verbose_name="Nombre", blank=False, null=False)

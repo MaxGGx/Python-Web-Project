@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 from .forms import SignUpForm
-from Entrega1.models import player
+from Entrega1.models import player,coleccionHeroe
 
 
 # verificarUsuario
@@ -26,7 +26,7 @@ def register(request):
         form = SignUpForm(request.POST)
         if ('username' in request.POST.keys()) and ('password1' in request.POST.keys()) and ('password2' in request.POST.keys()) and ('email' in request.POST.keys()):
             if request.POST['password1'] == request.POST['password2']:
-                if not User.objects.filter(username = request.POST['username']).exists():
+                if (not User.objects.filter(username = request.POST['username']).exists()) and (not player.objects.filter(Nickname = request.POST['username']).exists()):
                     user = User.objects.create_user(request.POST['username'], '', request.POST['password1'])
                     user.save()
                     user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
@@ -44,4 +44,12 @@ def register(request):
         context = {'error' : 'error'}
         return context
     context = {'null': 0}
+    return context
+
+def obtener_cartas(request):
+    usuario = request.user
+    cartas_usuario = [x.ID_Hero for x in coleccionHeroe.objects.filter(ID_player = player.objects.filter(Nickname = usuario)[0].pk)]
+    for x in cartas_usuario:
+        print(x.imagen)
+    context = {"cartas":cartas_usuario}
     return context
