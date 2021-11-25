@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 from .forms import SignUpForm
-from Entrega1.models import player,coleccionHeroe
+from Entrega1.models import player,coleccionHeroe,card,hero
+import random
 
 
 # verificarUsuario
@@ -20,6 +21,12 @@ def verificarUsuario(request):
         return context
     context = {'null': 0}
     return context
+
+#Permite obtener un set de cartas random
+def getCartas():
+    cartas = list(card.objects.all())
+    r_cartas = random.sample(cartas,5)
+    return r_cartas
 
 def register(request):
     if request.method == 'POST':
@@ -53,3 +60,65 @@ def obtener_cartas(request):
         print(x.imagen)
     context = {"cartas":cartas_usuario}
     return context
+
+def winner(jugada1, jugada2):
+    if (jugada1 or jugada2) is not None:
+        jugada1Tipo = jugada1[0]
+        jugada2Tipo = jugada2[0]
+        jugada1N = jugada1[1:]
+        jugada2N = jugada2[1:]
+        if jugada1Tipo == jugada2Tipo:
+            if jugada1N > jugada2N:
+                ganador=True
+            else:
+                ganador=False
+        elif (jugada1Tipo == "F" and jugada2Tipo == "A"):
+            ganador=False
+        elif (jugada1Tipo == "F" and jugada2Tipo == "N"):
+            ganador=True
+        elif (jugada1Tipo == "A" and jugada2Tipo == "N"):
+            ganador=False
+        elif (jugada1Tipo == "A" and jugada2Tipo == "F"):
+            ganador=True
+        elif (jugada1Tipo == "N" and jugada2Tipo == "F"):
+            ganador=False
+        elif (jugada1Tipo == "N" and jugada2Tipo == "A"):
+            ganador=True
+    return ganador
+
+def procesarJugada(request):
+    flag  = True
+    if request.method == 'POST':
+        puntajecpu = int(request.POST['PuntajeCPU'])
+        puntajejugador = int(request.POST['PuntajeJugador'])
+        CPU = request.POST['CPU']
+        if (request.POST['Cartas'] == -1) or (request.POST['Cartas'] == '-1'):
+            flag = False
+            CPU = list(hero.objects.all())
+            CPU = (random.choice(CPU)).imagen
+        elif request.POST['CartaElegida'] == "NONE":
+            flag = False
+        cartas = getCartas()
+        cartaelegida = request.POST['CartaElegida']
+        cartacpu = request.POST['CartaCPU']
+        personaje = request.POST['Personaje']
+        if flag:
+            ganador = winner(cartaelegida, cartacpu)
+            if ganador:
+                puntajejugador+=1
+            else:
+                puntajecpu+=1
+        else:
+            ganador="None"
+        cartacpu = getCartas()[0]
+        if (puntajejugador==3):
+            context = "GANA JUGADOR"
+        elif(puntajecpu == 3):
+            context = "GANA CPU"
+        else:
+            context = {'PuntajeCPU':puntajecpu,'PuntajeJugador':puntajejugador,'Cartas':cartas,'CartaElegida':request.POST["CartaElegida"],'CartaCPU':cartacpu,'ganador':ganador, 'Personaje':personaje, 'CPU':CPU}
+    print(context)
+    return context
+
+
+

@@ -9,5 +9,7 @@ urlpatterns = [
     path("register/", registro),
     path("perfil/", perfil),
     path("archivo/", archivo),
-    path("juego/", juego)
+    path("juego/", juego),
+    path("partida/", juego1),
+    path("status/",status)
 ]

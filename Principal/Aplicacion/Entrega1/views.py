@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .funciones_aux import verificarUsuario, register, obtener_cartas
+from .funciones_aux import verificarUsuario, register, obtener_cartas, procesarJugada
 from django.contrib import auth
 import random
 from django.contrib.auth.decorators import login_required
@@ -49,12 +49,39 @@ def archivo(request):
     context = {'cartas':cartas}
     return render(request, "archivo.html", context)
 
+#Seleccion de heroe
 @login_required(login_url="/login/")
 def juego(request):
+    if request.method=="POST":
+        context = procesarJugada(request)
+        if context=="GANA JUGADOR":
+            return redirect("/perfil")
+        elif context=="GANA CPU":
+            return redirect("/perfil")
+        elif (request.POST['Cartas']==1) or (request.POST['Cartas']=='1'):
+            context["OldCartaCPU"] = request.POST["CartaCPU"]
+            return render(request,"status.html",context)
+        else:
+            print(request.POST['Personaje'])
+            return render(request, "juego1.html", context)     
     context = obtener_cartas(request)
     context['username'] = request.user
     return render(request,"juego.html",context)
-    
+
+#Panel principal
+@login_required(login_url="/login/")
+def juego1(request):
+    #context: PuntajeCPU, PuntajeJugador, Cartas, CartaElegida, CartaCPU
+    if request.method == 'POST':
+        context = procesarJugada(request)
+        return render(request,"juego1.html", context)    
+    return render(request,"juego1.html")
+
+#Status, para ver si gano o perdió
+@login_required(login_url="/login/")
+def status(request):
+    #context
+    return render(request,"status.html")
 
 @login_required(login_url="/login/")
 def perfil(request):
