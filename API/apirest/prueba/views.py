@@ -3,10 +3,26 @@ from django.http import HttpResponse
 from rest_framework.generics import ListAPIView
 from .serializers import *
 from .models import *
+from random import choice
 
 # Create your views here.
 def inicio(request):
 	return HttpResponse("FUNCIONA")
+
+class CambiarPerfil(ListAPIView):
+	serializer_class=ImagenSerializer
+
+	def get_queryset(self):
+		if self.request.method == "GET":
+			imagenes = Imagenes.objects.all()
+			ID = choice(range(len(imagenes)))
+			print("ID:", imagenes[ID].id, "nombre:", imagenes[ID].imagen)
+			print(Imagenes.objects.filter(id=imagenes[ID].id))
+			return Imagenes.objects.filter(id=imagenes[ID].id)
+
+		else:
+			return Imagenes.objects.all()
+
 
 class ResultadosVista(ListAPIView):
 	serializer_class=ResultadoSerializer

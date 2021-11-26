@@ -64,7 +64,7 @@
 		    					<input type="hidden" id="custId" name="CartaElegida" value={{x.Nombre}}>
 		    					<input type="hidden" id="custId" name="CartaCPU" value={{CartaCPU.Nombre}}>
 		    					<input type="hidden" id="custId" name="CPU" value={{CPU}}>
-		    					<a type="submit" class="btn btn-primary">
+		    					<a type="submit" onclick="Calcular()" class="btn btn-primary">
 		    						<input type="image" src="{% static x.imagen %}" width="100%" height="100%" alt="Submit">
 		    					</a>
 		    				</form>

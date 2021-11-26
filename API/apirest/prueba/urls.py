@@ -3,5 +3,7 @@ from django.urls import path
 
 urlpatterns = [
 	path('', ResultadosVista.as_view()),
-	path('hola',inicio)
+	path('hola',inicio),
+	path('CambiarImagen', CambiarPerfil.as_view()),
+	
 ]
