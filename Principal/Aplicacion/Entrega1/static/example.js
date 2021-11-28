@@ -1,3 +1,4 @@
+//var ip="localhost:8001";
 var ip="api1.jdiaz.live";
 var direccion="/CambiarImagen";
 
@@ -11,7 +12,6 @@ function CambiarImagen(){
 		url: 'http://'+ip+direccion+message,
 		crossDomain: true,		   		   
 		success: function(response){
-			console.log("xd")
 			$.each(response,function(key, registro){		    			    				    			    			    
 		    	console.log(registro["imagen"].replace("'",""));
 				$("#Perfil").attr("src", "/static/media/"+registro["imagen"].replace("'","").replace("'",""))
