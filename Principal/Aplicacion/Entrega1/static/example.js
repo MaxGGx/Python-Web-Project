@@ -1,4 +1,4 @@
-var ip="localhost:8001";
+var ip="api1.jdiaz.live";
 var direccion="/CambiarImagen";
 
 
