@@ -3,7 +3,7 @@ var direccion="/CambiarImagen";
 
 
 function CambiarImagen(){
-	console.log('xd')
+	console.log('entrega7')
 	message ='?';
 
 	$.ajax({
