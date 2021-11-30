@@ -10,6 +10,6 @@ urlpatterns = [
     path("perfil/", perfil),
     path("archivo/", archivo),
     path("juego/", juego),
-    path("partida/", juego1),
+    #path("partida/", juego1),
     path("status/",status)
 ]

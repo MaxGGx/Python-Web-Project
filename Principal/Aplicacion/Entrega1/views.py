@@ -55,9 +55,11 @@ def juego(request):
     if request.method=="POST":
         context = procesarJugada(request)
         if context=="GANA JUGADOR":
-            return redirect("/perfil")
+            context = {"ganador":1}
+            return render(request,"Fin.html",context)
         elif context=="GANA CPU":
-            return redirect("/perfil")
+            context = {"ganador":0}
+            return render(request,"Fin.html",context)
         elif (request.POST['Cartas']==1) or (request.POST['Cartas']=='1'):
             context["OldCartaCPU"] = request.POST["CartaCPU"]
             return render(request,"status.html",context)

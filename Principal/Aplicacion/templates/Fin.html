@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
+    <link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+    <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+    <style lang="en" type="text/css" id="dark-mode-native-style"></style>
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" type="text/css">
+        
+        <title>Sebaki~CG</title>
+    </head>
+    <body>
+        <div class="row mx-3 my-3 ">
+            <div class="col-lg-12">
+                {% if ganador %}
+                    <center><h1>Has Ganado esta ronda!</h1></center>
+                    <center><h2>Como premio has ganado un nuevo personaje, Visita la seleccion de personaje para verlo!</h2></center>
+                {% else %}
+                    <center><h1>Has Perdido esta ronda</h1></center>
+                    <center><h2>Puedes volver a intentarlo para optar a ganar un nuevo personaje!</h2></center>
+                {% endif %}
+            </div>
+            <center><a href="/perfil" class="btn btn-danger">Terminar y salir del juego</a></center>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
+    </body>
+</html>

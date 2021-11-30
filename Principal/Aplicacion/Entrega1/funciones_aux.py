@@ -46,6 +46,12 @@ def register(request):
                     jugador.Password = raw_password
                     jugador.email = email
                     jugador.save()
+                    heroeinitP = player.objects.filter(Nickname = request.POST['username'])[0]
+                    heroeinitH = hero.objects.filter(Nombre = "Hatsune Miku")[0]
+                    colec = coleccionHeroe()
+                    colec.ID_player = heroeinitP
+                    colec.ID_Hero = heroeinitH
+                    colec.save()
                     return 1
         
         context = {'error' : 'error'}
@@ -113,6 +119,20 @@ def procesarJugada(request):
         cartacpu = getCartas()[0]
         if (puntajejugador==3):
             context = "GANA JUGADOR"
+            heroeinitP = player.objects.filter(Nickname = request.user)[0]
+            heroes_act = coleccionHeroe.objects.filter(ID_player = heroeinitP)
+            heroes_act = [x.ID_Hero for x in heroes_act]
+            heroes_sel = list(hero.objects.all())
+            hs = heroes_sel.pop(random.randrange(len(heroes_sel)))
+            while (hs in heroes_act):
+                hs = heroes_sel.pop(random.randrange(len(heroes_sel)))
+                if len(heroes_sel) == 0:
+                    break
+            if hs not in heroes_act:
+                colec = coleccionHeroe()
+                colec.ID_player = heroeinitP
+                colec.ID_Hero = hs
+                colec.save()
         elif(puntajecpu == 3):
             context = "GANA CPU"
         else:
